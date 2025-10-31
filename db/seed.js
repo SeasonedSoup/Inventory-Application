@@ -2,7 +2,6 @@ const { Client } = require('pg');
 
 //create category and resource table then proceed to populate it
 const SQL = `
-
     CREATE TYPE resource_type AS ENUM(note, digital-note, 'link-site');
 
     CREATE TABLE IF NOT EXISTS categories (
