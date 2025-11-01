@@ -13,9 +13,12 @@ const SQL = `
     CREATE TABLE IF NOT EXISTS resources (
       id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY
       title VARCHAR(100),
-      description TEXT
-      type resource_type
-      category_id INTEGER REFERENCES categories(id)
+      description TEXT,
+      type resource_type,
+      category_id INTEGER,
+      CONSTRAINT fk_category
+        FOREIGN KEY (category_id) 
+        REFERENCES categories(id)
     );
 
     INSERT INTO categories (title, description)
