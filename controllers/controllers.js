@@ -14,19 +14,21 @@ async function getCategories(req, res) {
 async function getCategoryDetail(req,res) {
     const id = req.params.id
     const category = await db.getCategory(id)
-    res.render("category", {category})
+
+    const resources = await db.getResources(id)
+    res.render("category", {category, resources})
 }
 
-async function getResources(req, res) {
-
-} 
-
 async function getResourceDetail(req, res) {
-    
+    const id = req.params.id;
+
+    const resource = await db.getResourceDetail(id);
+    res.render("resourceDetail", {resource});
 }
 
 module.exports = {
     getHomePage,
     getCategories,
-    getCategoryDetail
+    getCategoryDetail,
+    getResourceDetail
 }

@@ -8,5 +8,16 @@
 <body>
     <h1><%= category.title %></h1>
     <h2><%= category.description %></h2>
+
+    <li>
+        <% resources.forEach(resource => { %>
+            <ul>
+                <div>
+                    <h2> <% resource.title %> </h2>
+                    <h3> <% resource.type %> </h3>
+                </div>
+            </ul>
+        <% }) %>     
+    </li>
 </body>
 </html>
