@@ -26,9 +26,36 @@ async function getResourceDetail(req, res) {
     res.render("resourceDetail", {resource});
 }
 
+async function createCategoryPost(req, res) {
+    const category = req.body;
+    const result = await db.insertCategory(
+        category.title,
+        category.description
+    );
+
+    console.log(result);
+    res.redirect('/');
+}
+
+async function createResourcePost(req, res) {
+    const resource = req.body;
+
+    const result = await db.insertResource(
+        resource.title, 
+        resource.description, 
+        resource.type,
+        resource.category_id
+    )
+
+    console.log(result);
+    res.redirect('/')
+}
+
 module.exports = {
     getHomePage,
     getCategories,
     getCategoryDetail,
-    getResourceDetail
+    getResourceDetail,
+    createCategoryPost,
+    createResourcePost
 }
