@@ -6,8 +6,7 @@ function getHomePage(req, res) {
 };
 
 async function getCategories(req, res) {
-    //const categories = await db.getCategories();
-    const categories  = ['Blender, The Odin'] 
+    const categories = await db.getAllCategories();
     res.render("categories", {categories});
 }
 //this will need validation at some point
@@ -16,7 +15,7 @@ async function getCategoryDetail(req,res) {
     const category = await db.getCategory(id)
 
     const resources = await db.getResources(id)
-    res.render("category", {category, resources})
+    res.render("categoryDetail", {category, resources})
 }
 
 async function getResourceDetail(req, res) {
@@ -34,7 +33,7 @@ async function createCategoryPost(req, res) {
     );
 
     console.log(result);
-    res.redirect('/');
+    res.redirect('/categories');
 }
 
 async function createResourcePost(req, res) {
@@ -48,7 +47,7 @@ async function createResourcePost(req, res) {
     )
 
     console.log(result);
-    res.redirect('/')
+    res.redirect('/categories/:id')
 }
 
 module.exports = {

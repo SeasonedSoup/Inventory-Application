@@ -5,7 +5,7 @@ require('dotenv').config();
 const SQL = `
     DO $$
       BEGIN 
-        CREATE TYPE resource_type AS ENUM(note, digital-note, 'link');
+        CREATE TYPE resource_type AS ENUM('note', 'digital-note', 'link');
       EXCEPTION 
         WHEN duplicate_object THEN 
         null;
@@ -18,7 +18,7 @@ const SQL = `
     ); 
 
     CREATE TABLE IF NOT EXISTS resources (
-      id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY
+      id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
       title VARCHAR(100),
       description TEXT,
       type resource_type,
@@ -38,7 +38,7 @@ const SQL = `
       VALUES 
         ('Blender Guru Donut Tutorial', 'The og tutorial for beginners learning to model and render a donut.', 'link' , 1),
         ('React Hooks' , 'Explains basic hooks such as useState, useEffect, useContext, useRef and more', 'digital-note', 2),
-        ('Khan Academy Geometry, 'My notes about Geometry learning specifically transformations', 'note', 3);
+        ('Khan Academy Geometry', 'My notes about Geometry learning specifically transformations', 'note', 3);
 `
 async function main(){
   console.log('seeding values...')
@@ -46,7 +46,7 @@ async function main(){
     host: 'localhost',
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: 'resource-notes',
+    database: 'resource_notes',
     port: 5432
   })
 
@@ -56,3 +56,5 @@ async function main(){
 
   console.log('seeding finished...')
 }
+
+main();
