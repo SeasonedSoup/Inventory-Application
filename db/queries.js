@@ -35,6 +35,31 @@ async function insertResource(title, description, type, category_id) {
     return result.rows[0]
 }
 
+//DELETES
+
+async function deleteCategory(id) {
+    const result = await pool.query(`DELETE FROM categories WHERE id = ($1)`, [id]);
+    return result;
+}
+
+async function deleteResource(id) {
+    const result = await pool.query(`DELETE FROM resources WHERE id = ($1)`, [id]);
+    return result
+}
+
+async function updateCategory(category) {
+    const result = await pool.query(`UPDATE category SET title = ($1), description = ($2)`, 
+    [category.title, category.description])
+    return result;
+}
+
+
+async function updateResource(resource) {
+    const result = await pool.query(`UPDATE category SET title = ($1), description = ($2), type = ($3), `, 
+    [category.title, category.description])
+    return result;
+}
+
 module.exports = {
     getAllCategories,
     getCategory,
@@ -42,4 +67,8 @@ module.exports = {
     getResourceDetail,
     insertCategory,
     insertResource,
+    updateCategory,
+    updateResource,
+    deleteCategory,
+    deleteResource
 }
