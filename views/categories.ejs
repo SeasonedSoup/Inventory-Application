@@ -14,8 +14,9 @@
         <button>Submit</button>
     </form>
 
-    <% categories.forEach(category => { %>
+    <% categories.forEach((category,i) => { %>
         <h1><%= category.title %></h1>
+        <a href="/categories/<%= i+1 %>">Visit Category</a>
     <% }) %>
 </body>
 </html>

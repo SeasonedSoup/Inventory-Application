@@ -47,16 +47,16 @@ async function deleteResource(id) {
     return result
 }
 
-async function updateCategory(category) {
-    const result = await pool.query(`UPDATE category SET title = ($1), description = ($2)`, 
-    [category.title, category.description])
+async function updateCategory(category, id) {
+    const result = await pool.query(`UPDATE category SET title = ($1), description = ($2) WHERE id = ($3)`, 
+    [category.title, category.description, id])
     return result;
 }
 
 
-async function updateResource(resource) {
-    const result = await pool.query(`UPDATE category SET title = ($1), description = ($2), type = ($3), `, 
-    [category.title, category.description])
+async function updateResource(resource, id) {
+    const result = await pool.query(`UPDATE category SET title = ($1), description = ($2), type = ($3) WHERE id = ($4), `, 
+    [resource.title, resource.description, id])
     return result;
 }
 
