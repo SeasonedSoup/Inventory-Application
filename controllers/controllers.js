@@ -47,7 +47,7 @@ async function createResourcePost(req, res) {
     )
 
     console.log(result);
-    res.redirect('/categories/:id')
+    res.redirect(`/categories/${resource.category_id}`)
 }
 
 module.exports = {

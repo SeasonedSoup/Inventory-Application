@@ -1,7 +1,7 @@
 const pool = require('./pool');
 
 async function getAllCategories() {
-    const { rows } = await pool.query(`SELECT title FROM categories`);
+    const { rows } = await pool.query(`SELECT id, title FROM categories`);
     return rows;
 }
 
