@@ -19,10 +19,10 @@ async function getCategoryDetail(req,res) {
 }
 
 async function getResourceDetail(req, res) {
-    const id = req.params.id;
+    const {categoryId, id} = req.params;
 
     const resource = await db.getResourceDetail(id);
-    res.render("resourceDetail", {resource});
+    res.render("resourceDetail", {resource, categoryId});
 }
 
 async function createCategoryPost(req, res) {
@@ -50,11 +50,30 @@ async function createResourcePost(req, res) {
     res.redirect(`/categories/${resource.category_id}`)
 }
 
+async function deleteCategory(req, res) {
+    const id = req.params.id;
+
+    const result = await db.deleteCategory(id);
+    console.log(result);
+    res.redirect('/categories');
+}
+
+async function deleteResource(req, res) {
+    const {categoryId, id} = req.params;
+
+    const result = await db.deleteResource(id);
+    console.log(result);
+
+    res.redirect(`/categories/${categoryId}`);
+}
+
 module.exports = {
     getHomePage,
     getCategories,
     getCategoryDetail,
     getResourceDetail,
     createCategoryPost,
-    createResourcePost
+    createResourcePost,
+    deleteCategory,
+    deleteResource,
 }

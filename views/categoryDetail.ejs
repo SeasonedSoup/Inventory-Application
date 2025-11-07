@@ -6,6 +6,7 @@
     <title>Category</title>
 </head>
 <body>
+    <a href="/categories">Go Back</a>
     <h1><%= category.title %></h1>
     <h2><%= category.description %></h2>
 
@@ -38,6 +39,10 @@
                     <h2> <%= resource.title %> </h2>
                     <h4> <%= resource.description %> </h4>
                     <h3> <%=  resource.type %> </h3>
+                    <a href="/categories/<%= category.id %>/<%= resource.id %>">Visit Category</a>
+                    <form action="/categories/<%= category.id %>/<%= resource.id %>/delete" method="POST">
+                        <button> Delete Resource </button>
+                    </form>
                 </div>
             </ul>
         <% }) %>     

@@ -6,7 +6,9 @@
     <title>Resource Detail</title>
 </head>
 <body>
-    <h1> <% resource.title %></h1>
-    <h2> <% resource.description %></h2>
+    <a href="/categories/<%=categoryId%>">Go back</a>
+    <h1> <%= resource.title %></h1>
+    <h2> <%= resource.type %></h2>
+    <h2> <%= resource.description %></h2>
 </body>
 </html>
