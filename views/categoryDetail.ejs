@@ -40,6 +40,7 @@
                     <h4> <%= resource.description %> </h4>
                     <h3> <%=  resource.type %> </h3>
                     <a href="/categories/<%= category.id %>/<%= resource.id %>">Visit Category</a>
+                    <a href="/categories/<%= category.id %>/<%= resource.id %>/update">Update Resource</a>
                     <form action="/categories/<%= category.id %>/<%= resource.id %>/delete" method="POST">
                         <button> Delete Resource </button>
                     </form>

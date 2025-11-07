@@ -66,6 +66,17 @@ async function updateCategoryPost(req, res) {
     res.redirect('/categories')
 }
 
+async function updateResourceGet(req, res) {
+    const {categoryId, id} = req.params
+    const resource = await db.getResourceDetail(id)
+    
+    res.render('updateResource', {categoryId, resource})
+}
+
+async function updateResourcePost(req, res) {
+
+}
+
 //DELETE
 async function deleteCategory(req, res) {
     const id = req.params.id;
@@ -94,5 +105,7 @@ module.exports = {
     updateCategoryGet,
     updateCategoryPost,
     deleteCategory,
+    updateResourceGet,
+    updateResourcePost,
     deleteResource,
 }
