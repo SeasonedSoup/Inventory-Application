@@ -1,7 +1,7 @@
 const pool = require('./pool');
 
 async function getAllCategories() {
-    const { rows } = await pool.query(`SELECT id, title FROM categories`);
+    const { rows } = await pool.query(`SELECT id, title FROM categories ORDER BY id`);
     return rows;
 }
 
@@ -48,14 +48,14 @@ async function deleteResource(id) {
 }
 
 async function updateCategory(category, id) {
-    const result = await pool.query(`UPDATE category SET title = ($1), description = ($2) WHERE id = ($3)`, 
+    const result = await pool.query(`UPDATE categories SET title = ($1), description = ($2) WHERE id = ($3)`, 
     [category.title, category.description, id])
     return result;
 }
 
 
 async function updateResource(resource, id) {
-    const result = await pool.query(`UPDATE category SET title = ($1), description = ($2), type = ($3) WHERE id = ($4), `, 
+    const result = await pool.query(`UPDATE resources SET title = ($1), description = ($2), type = ($3) WHERE id = ($4), `, 
     [resource.title, resource.description, id])
     return result;
 }

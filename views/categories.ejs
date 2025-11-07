@@ -17,6 +17,7 @@
     <% categories.forEach((category) => { %>
         <h1><%= category.title %></h1>
         <a href="/categories/<%= category.id %>">Visit Category</a>
+        <a href="/categories/<%= category.id%>/update">Edit Category</a>
         <form action="/categories/<%= category.id %>/delete" method="POST">
             <button>Delete Category</button>
         </form>
