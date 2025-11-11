@@ -1,9 +1,9 @@
 const db = require('../db/queries');
 
 async function getResourceDetail(req, res) {
-    const {categoryId, id} = req.params;
+    const {categoryId, productId} = req.params;
 
-    const resource = await db.getResourceDetail(id);
+    const resource = await db.getResourceDetail(productId);
     res.render("resourceDetail", {resource, categoryId});
 }
 
@@ -21,8 +21,8 @@ async function createResourcePost(req, res) {
 }
 
 async function updateResourceGet(req, res) {
-    const {categoryId, id} = req.params
-    const resource = await db.getResourceDetail(id)
+    const {categoryId, productId} = req.params
+    const resource = await db.getResourceDetail(productId)
     
     res.render('updateResource', {categoryId, resource})
 }
@@ -33,9 +33,9 @@ async function updateResourcePost(req, res) {
 }
 
 async function deleteResource(req, res) {
-    const {categoryId, id} = req.params;
+    const {categoryId, productId} = req.params;
 
-    const result = await db.deleteResource(id);
+    const result = await db.deleteResource(productId);
     console.log(result);
 
     res.redirect(`/categories/${categoryId}`);

@@ -6,13 +6,12 @@ async function getCategories(req, res) {
 }
 
 async function getCategoryDetail(req,res) {
-    const id = req.params.id
-    const category = await db.getCategory(id)
+    const categoryId = req.params.id
+    const category = await db.getCategory(categoryId);
 
-    const resources = await db.getResources(id)
-    res.render("categoryDetail", {category, resources})
+    const resources = await db.getResources(categoryId);
+    res.render("categoryDetail", {category, resources});
 }
-
 
 async function createCategoryPost(req, res) {
     const category = req.body;
@@ -28,24 +27,24 @@ async function createCategoryPost(req, res) {
 
 //UPDATES
 async function updateCategoryGet(req, res) {
-    const id = req.params.categoryId;
-    const category = await db.getCategory(id)
+    const categoryId = req.params.categoryId;
+    const category = await db.getCategory(categoryId)
     res.render('updateCategory', {category})
 }
 
 async function updateCategoryPost(req, res) {
     const category = req.body 
-    const id = req.params.id
+    const categoryId = req.params.categoryId
 
-    const result = await db.updateCategory(category, id)
+    const result = await db.updateCategory(category, categoryId)
     console.log(result)
     res.redirect('/categories')
 }
 
 async function deleteCategory(req, res) {
-    const id = req.params.id;
+    const categoryId = req.params.categoryId;
 
-    const result = await db.deleteCategory(id);
+    const result = await db.deleteCategory(categoryId);
     console.log(result);
     res.redirect('/categories');
 }
