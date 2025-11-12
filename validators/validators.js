@@ -7,7 +7,7 @@ requiredErr = 'is required';
 const validateCategory = [
     body("title").trim()
     .notEmpty().withMessage(`title of category ${requiredErr}`)
-    .length({min: 1, max: 100}).withMessage(`title of category ${lengthErr}`),
+    .isLength({min: 1, max: 100}).withMessage(`title of category ${lengthErr}`),
     body("description").optional().trim()
 ]
 
@@ -15,7 +15,7 @@ const validateCategory = [
 const validateResource = [
     body("title").trim()
     .notEmpty().withMessage(`title of resource ${requiredErr}`)
-    .length({min: 1, max: 100}).withMessage(`title of resource ${length}`),
+    .isLength({min: 1, max: 100}).withMessage(`title of resource ${lengthErr}`),
     body("description").optional().trim(),
     body("type").trim()
     .notEmpty().withMessage(`type ${requiredErr}. please choose one option`)
@@ -24,5 +24,5 @@ const validateResource = [
 
 module.exports = {
     validateCategory,
-     validateResource
+    validateResource
 }

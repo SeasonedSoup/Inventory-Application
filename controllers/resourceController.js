@@ -1,4 +1,5 @@
 const db = require('../db/queries');
+const {validateResource } = require('../validators/validators');
 
 async function getResourceDetail(req, res) {
     const {categoryId, resourceId} = req.params;

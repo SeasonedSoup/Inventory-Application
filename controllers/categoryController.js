@@ -1,5 +1,7 @@
 const db = require('../db/queries');
 const path = require('path');
+const {validationResult, matchedData} = require('express-validator');
+const {validateCategory} = require('../validators/validators');
 
 async function getCategories(req, res) {
     const categories = await db.getAllCategories();
@@ -15,19 +17,33 @@ async function getCategoryDetail(req,res) {
 }
 
 function createCategoryGet(req, res) {
-    res.sendFile(path.join(__dirname, '../views/createCategory.html'));
+    res.render("createCategory", {
+        category: {},
+        errors: [],
+    });
 }
-async function createCategoryPost(req, res) {
-    const category = req.body;
+
+const createCategoryPost = [
+    validateCategory, async (req, res) => {
+
+    const errors = validationResult(req);
+     //fetch sanitized data
+    const category = matchedData(req);
+
+    if(!errors.isEmpty()) {
+        return res.status(400).render("createCategory", {
+            category: category,
+            errors: errors.array(),
+        });
+    }
     const result = await db.insertCategory(
         category.title,
         category.description
     );
-
     console.log(result);
     res.redirect('/categories');
-}
-
+    }
+];
 
 //UPDATES
 async function updateCategoryGet(req, res) {
