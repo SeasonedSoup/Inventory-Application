@@ -6,7 +6,7 @@ async function getCategories(req, res) {
 }
 
 async function getCategoryDetail(req,res) {
-    const categoryId = req.params.id
+    const categoryId = req.params.categoryId
     const category = await db.getCategory(categoryId);
 
     const resources = await db.getResources(categoryId);

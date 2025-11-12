@@ -2,6 +2,10 @@ const { Router } = require('express');
 
 const categoryRouter = Router();
 const categoryController = require('../controllers/categoryController');
+//use within controller and merge the params
+const resourceRoute = require('../routes/resourceRouter');
+
+categoryRouter.use('/:categoryId/resources', resourceRoute)
 
 categoryRouter.get('/', categoryController.getCategories);
 categoryRouter.get('/:categoryId/update', categoryController.updateCategoryGet);

@@ -3,12 +3,12 @@ const resourceController = require('../controllers/resourceController');
 //enables getting the parent routers parameters
 const resourceRouter = Router({mergeParams: true});
 
-resourceRouter.get('/:productId/update', resourceController.updateResourceGet);
-resourceRouter.get('/:productId', resourceController.getResourceDetail);
+resourceRouter.get('/:resourceId/update', resourceController.updateResourceGet);
+resourceRouter.get('/:resourceId', resourceController.getResourceDetail);
 
-resourceRouter.post('/:productId/update', resourceController.updateResourcePost);
-resourceRouter.post('/:productId', resourceController.createResourcePost);
+resourceRouter.post('/:resourceId/update', resourceController.updateResourcePost);
+resourceRouter.post('/', resourceController.createResourcePost);
 
-resourceRouter.post('/:productId/delete', resourceController.deleteResource);
+resourceRouter.post('/:resourceId/delete', resourceController.deleteResource);
 
 module.exports = resourceRouter;

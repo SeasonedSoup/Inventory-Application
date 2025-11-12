@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('node:path');
-const categoryRouter = require('./routes/route')
+const router = require('./routes/route')
 require('dotenv').config()
 
 const app = express();
@@ -8,7 +8,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
-app.use('/', categoryRouter)
+app.use('/', router)
 
 const PORT = process.env.PORT || 3000 
 

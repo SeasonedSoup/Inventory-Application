@@ -12,7 +12,7 @@ async function getCategory(id) {
 
 //both functions before and ahead of this line is simplified for now this could be a join statement
 async function getResources(categoryId) {
-    const { rows } = await pool.query(`SELECT id, title, type FROM resources WHERE category_id = ($1)`, [categoryId]);
+    const { rows } = await pool.query(`SELECT id, title, type FROM resources WHERE category_id = ($1) ORDER BY id`, [categoryId]);
     return rows;
 }
 
@@ -55,8 +55,8 @@ async function updateCategory(category, id) {
 
 
 async function updateResource(resource, id) {
-    const result = await pool.query(`UPDATE resources SET title = ($1), description = ($2), type = ($3) WHERE id = ($4), `, 
-    [resource.title, resource.description, id])
+    const result = await pool.query(`UPDATE resources SET title = ($1), description = ($2), type = ($3) WHERE id = ($4) `, 
+    [resource.title, resource.description, resource.type, id])
     return result;
 }
 
