@@ -4,10 +4,11 @@ const resourceController = require('../controllers/resourceController');
 const resourceRouter = Router({mergeParams: true});
 
 resourceRouter.get('/:resourceId/update', resourceController.updateResourceGet);
+resourceRouter.get('/create', resourceController.createResourceGet);
 resourceRouter.get('/:resourceId', resourceController.getResourceDetail);
 
 resourceRouter.post('/:resourceId/update', resourceController.updateResourcePost);
-resourceRouter.post('/', resourceController.createResourcePost);
+resourceRouter.post('/create', resourceController.createResourcePost);
 
 resourceRouter.post('/:resourceId/delete', resourceController.deleteResource);
 

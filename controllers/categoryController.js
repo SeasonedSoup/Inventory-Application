@@ -1,4 +1,5 @@
 const db = require('../db/queries');
+const path = require('path');
 
 async function getCategories(req, res) {
     const categories = await db.getAllCategories();
@@ -13,6 +14,9 @@ async function getCategoryDetail(req,res) {
     res.render("categoryDetail", {category, resources});
 }
 
+function createCategoryGet(req, res) {
+    res.sendFile(path.join(__dirname, '../views/createCategory.html'));
+}
 async function createCategoryPost(req, res) {
     const category = req.body;
     const result = await db.insertCategory(
@@ -52,6 +56,7 @@ async function deleteCategory(req, res) {
 module.exports = {
     getCategories,
     getCategoryDetail,
+    createCategoryGet,
     createCategoryPost,
     updateCategoryGet,
     updateCategoryPost,

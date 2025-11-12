@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Resource</title>
+</head>
+<body>
+     <form action="/categories/<%= categoryId %>/resources/create" method="POST">
+        <label for="title">Title: </label>
+        <input type="text" name="title" id="title" maxlength="100">
+        <label for="description">Description:</label>
+        <input type="text" name="description" id="description">
+        
+        <label for="type">Type of Resource: </label> <br>
+        
+        <input type="radio" id="note" name="type" value="note">
+        <label for="note">Note</label><br>
+
+        <input type="radio" id="digital-note" name="type" value="digital-note">
+        <label for="digital-note">Digital Note</label><br>
+
+        <input type="radio" id="link" name="type" value="link">
+        <label for="link">Link</label>
+        
+        <input type="hidden" name="category_id" value="<%= categoryId %>">
+       
+        <button>Submit</button>
+    </form>
+</body>
+</html>

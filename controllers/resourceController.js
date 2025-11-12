@@ -7,6 +7,11 @@ async function getResourceDetail(req, res) {
     res.render("resourceDetail", {resource, categoryId});
 }
 
+function createResourceGet(req, res) {
+    const { categoryId } = req.params;
+    res.render("createResource", {categoryId});
+}
+
 async function createResourcePost(req, res) {
     const resource = req.body;
 
@@ -51,6 +56,7 @@ async function deleteResource(req, res) {
 
 module.exports = {
     getResourceDetail,
+    createResourceGet,
     createResourcePost,
     updateResourceGet,
     updateResourcePost,
