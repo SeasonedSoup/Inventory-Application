@@ -1,5 +1,6 @@
 const db = require('../db/queries');
 const {validateResource } = require('../validators/validators');
+const {validationResult, matchedData} = require('express-validator');
 
 async function getResourceDetail(req, res) {
     const {categoryId, resourceId} = req.params;
@@ -13,18 +14,30 @@ function createResourceGet(req, res) {
     res.render("createResource", {categoryId});
 }
 
-async function createResourcePost(req, res) {
-    const resource = req.body;
+const createResourcePost = [ 
+    validateResource, async (req, res) => {
+        const { categoryId } = req.params;
+        const errors = validationResult(req);
+        const resource = matchedData(req);
 
-    const result = await db.insertResource(
-        resource.title, 
-        resource.description, 
-        resource.type,
-        resource.category_id
-    )
-    console.log(result);
-    res.redirect(`/categories/${resource.category_id}`)
-}
+        if(!errors.isEmpty()) {
+            return res.status(404).render("createResource", {
+                categoryId: categoryId,
+                resource: resource,
+                errors: errors.array() 
+            });
+        }
+
+        const result = await db.insertResource(
+            resource.title, 
+            resource.description, 
+            resource.type,
+            resource.category_id
+        )
+        console.log(result);
+        res.redirect(`/categories/${resource.category_id}`)
+    }
+];
 
 async function updateResourceGet(req, res) {
     const {categoryId, resourceId} = req.params

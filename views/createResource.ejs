@@ -6,21 +6,23 @@
     <title>Create Resource</title>
 </head>
 <body>
+
+    <%- include("partials/errors.ejs")  %>
      <form action="/categories/<%= categoryId %>/resources/create" method="POST">
         <label for="title">Title: </label>
-        <input type="text" name="title" id="title" maxlength="100">
+        <input type="text" name="title" id="title" maxlength="100" value="<%= resource.title || '' %>" >
         <label for="description">Description:</label>
-        <input type="text" name="description" id="description">
+        <input type="text" name="description" id="description" value="<%= resource.description || '' %>"">
         
         <label for="type">Type of Resource: </label> <br>
         
-        <input type="radio" id="note" name="type" value="note">
+        <input type="radio" id="note" name="type" value="note" <%= resource.type === 'note' ? 'checked' : '' %>>
         <label for="note">Note</label><br>
 
-        <input type="radio" id="digital-note" name="type" value="digital-note">
+        <input type="radio" id="digital-note" name="type" value="digital-note"  <%= resource.type === 'digital-note' ? 'checked' : '' %>>
         <label for="digital-note">Digital Note</label><br>
 
-        <input type="radio" id="link" name="type" value="link">
+        <input type="radio" id="link" name="type" value="link"  <%= resource.type === 'link' ? 'checked' : '' %>>
         <label for="link">Link</label>
         
         <input type="hidden" name="category_id" value="<%= categoryId %>">
