@@ -36,10 +36,10 @@ const createResourcePost = [
             resource.title, 
             resource.description, 
             resource.type,
-            resource.category_id
+            categoryId
         )
         console.log(result);
-        res.redirect(`/categories/${resource.category_id}`)
+        res.redirect(`/categories/${categoryId}`)
     }
 ];
 

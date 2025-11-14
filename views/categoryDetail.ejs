@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Category</title>
+    <script src="../scripts/toggleDelete.js" defer></script>
 </head>
 <body>
     <a href="/categories">Go Back</a>
     <h1><%= category.title %></h1>
     <h2><%= category.description %></h2>
-
+    <button id="toggleEditBtn">Edit Resources</button>
     <a href="/categories/<%= category.id %>/resources/create">Create Resource</a>
     <li>
         <% resources.forEach(resource => { %>
@@ -20,7 +21,7 @@
                     <h3> <%=  resource.type %> </h3>
                     <a href="/categories/<%= category.id %>/resources/<%= resource.id %>">Visit Resource</a>
                     <a href="/categories/<%= category.id %>/resources/<%= resource.id %>/update">Update Resource</a>
-                    <form action="/categories/<%= category.id %>/resources/<%= resource.id %>/delete" method="POST">
+                    <form class="deleteBtn" action="/categories/<%= category.id %>/resources/<%= resource.id %>/delete" method="POST" hidden>
                         <button> Delete Resource </button>
                     </form>
                 </div>
