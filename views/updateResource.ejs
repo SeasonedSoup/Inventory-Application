@@ -7,7 +7,9 @@
 </head>
 <body>
     <h1>Updating <%= resource.title %></h1>
-         <form action="/categories/<%= categoryId %>/resources/<%= resource.id %>/update" method="POST">
+    <%- include("partials/errors.ejs") %>
+        
+    <form action="/categories/<%= categoryId %>/resources/<%= resource.id %>/update" method="POST">
         <label for="title">Title: </label>
         <input type="text" name="title" id="title" maxlength="100" value="<%= resource.title %>">
         <label for="description">Description:</label>

@@ -11,7 +11,11 @@ async function getResourceDetail(req, res) {
 
 function createResourceGet(req, res) {
     const { categoryId } = req.params;
-    res.render("createResource", {categoryId});
+    res.render("createResource", {
+        categoryId: categoryId,
+        resource: {},
+        errors: []
+    });
 }
 
 const createResourcePost = [ 
@@ -43,22 +47,37 @@ async function updateResourceGet(req, res) {
     const {categoryId, resourceId} = req.params
     const resource = await db.getResourceDetail(resourceId)
     
-    res.render('updateResource', {categoryId, resource})
+    res.render('updateResource', {
+        categoryId: categoryId, 
+        resource: resource,
+        errors: []
+    });
 }
 
 
-async function updateResourcePost(req, res) {
-    const resource = req.body; 
-
-    const categoryId = req.params.categoryId
+const updateResourcePost = [
+    validateResource, async(req, res) => {
+    const errors = validationResult(req);
+    const resource = matchedData(req);
+    const categoryId = req.params.categoryId;
+    
+    if (!errors.isEmpty()) {
+        const resourceId = req.params.resourceId
+        const prevResource = await db.getResourceDetail(resourceId);
+        return res.status(404).render('updateResource', {
+            categoryId: categoryId,
+            resource: prevResource,
+            errors: errors.array()
+        });
+    }
     const resourceId = req.params.resourceId;
 
     const result = await db.updateResource(resource, resourceId)
     console.log(result);
 
     res.redirect(`/categories/${categoryId}`)
-}
-
+    }
+];
 async function deleteResource(req, res) {
     const {categoryId, resourceId} = req.params;
 

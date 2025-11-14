@@ -31,7 +31,7 @@ const createCategoryPost = [
     const category = matchedData(req);
 
     if(!errors.isEmpty()) {
-        return res.status(400).render("createCategory", {
+        return res.status(404).render("createCategory", {
             category: category,
             errors: errors.array(),
         });
@@ -49,17 +49,35 @@ const createCategoryPost = [
 async function updateCategoryGet(req, res) {
     const categoryId = req.params.categoryId;
     const category = await db.getCategory(categoryId)
-    res.render('updateCategory', {category})
+    res.render('updateCategory', {
+        categoryId: categoryId,
+        category: category, 
+        errors: []
+    });
 }
 
-async function updateCategoryPost(req, res) {
-    const category = req.body 
-    const categoryId = req.params.categoryId
+const updateCategoryPost = [
+    validateCategory, async (req, res) => {
+        const errors = validationResult(req);
+        const category = matchedData(req);
 
-    const result = await db.updateCategory(category, categoryId)
-    console.log(result)
-    res.redirect('/categories')
-}
+        if (!errors.isEmpty()) {
+                const categoryId = req.params.categoryId;
+                const prevCategory = await db.getCategory(categoryId)
+                
+                return res.status(404).render('updateCategory', {
+                categoryId: categoryId,
+                category: prevCategory,
+                errors: errors.array()
+            })
+        }
+        const categoryId = req.params.categoryId
+
+        const result = await db.updateCategory(category, categoryId)
+        console.log(result)
+        res.redirect('/categories')
+    }
+]
 
 async function deleteCategory(req, res) {
     const categoryId = req.params.categoryId;
