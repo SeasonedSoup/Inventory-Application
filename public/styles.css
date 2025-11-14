@@ -1,0 +1,23 @@
+/* ---------------------
+|  Homepage.html style |
+----------------------*/
+
+.heroText {
+    font-size: 48px;
+    color: brown;
+    text-align: center;
+}
+
+.button {
+    display: block;
+    height: fit-content;
+    width: fit-content;
+    background-color: beige;
+    border-radius: 8px;
+    border: 1px solid black;
+    padding: 24px;
+    text-decoration: none;
+}
+/* ---------------------
+-- MORE
+----------------------*/
