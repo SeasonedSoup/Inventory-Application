@@ -21,5 +21,6 @@ app.listen((PORT), (error) => {
     }
 
     console.log(`Server is listening at port ${PORT}`)
+    console.log(`Visit the server at http://localhost:3000/`)
 })
 

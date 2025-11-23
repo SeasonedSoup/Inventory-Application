@@ -5,17 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Categories</title>
     <script src="/scripts/toggleDelete.js" defer></script>
+    <link rel="stylesheet" href="/reset.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
     <button id="toggleEditBtn">Edit Categories</button>
     <a href="/categories/create">Create Category</a>
-    <% categories.forEach((category) => { %>
-        <h1><%= category.title %></h1>
-        <a href="/categories/<%= category.id %>">Visit Category</a>
-        <a href="/categories/<%= category.id%>/update">Edit Category</a>
-        <form class='deleteBtn' action="/categories/<%= category.id %>/delete" method="POST" hidden>
-            <button>Delete Category</button>
-        </form>
+    <div class="container">
+        <% categories.forEach((category) => { %>
+        <div class="card">
+            <h1><%= category.title %></h1>
+            <a href="/categories/<%= category.id %>">Visit Category</a>
+            <a href="/categories/<%= category.id%>/update">Edit Category</a>
+            <form class='deleteBtn' action="/categories/<%= category.id %>/delete" method="POST" hidden>
+                <button>Delete Category</button>
+            </form>
+        </div>
     <% }) %>
+    </div>
 </body>
 </html>
