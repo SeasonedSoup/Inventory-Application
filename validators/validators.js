@@ -1,13 +1,14 @@
 const {body} = require('express-validator');
 //text errors
 lengthErr = 'must be between 1 to 100 characters';
+titleErr = 'must be between 1 to 10 characters';
 requiredErr = 'is required';
 
 //validating the category
 const validateCategory = [
     body("title").trim()
     .notEmpty().withMessage(`title of category ${requiredErr}`)
-    .isLength({min: 1, max: 100}).withMessage(`title of category ${lengthErr}`),
+    .isLength({min: 1, max: 10}).withMessage(`title of category ${titleErr}`),
     body("description").optional().trim()
 ]
 

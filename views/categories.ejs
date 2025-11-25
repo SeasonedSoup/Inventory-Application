@@ -9,16 +9,21 @@
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <button id="toggleEditBtn">Edit Categories</button>
-    <a href="/categories/create">Create Category</a>
-    <div class="container">
+    <header>
+         <h1>My Categories</h1>
+         <div class="nav">
+            <button id="toggleEditBtn">Toggle Delete</button>
+            <a href="/categories/create">Create Category</a>
+         </div>
+    </header>
+    <div class="categoryContainer">
         <% categories.forEach((category) => { %>
         <div class="card">
             <h1><%= category.title %></h1>
             <a href="/categories/<%= category.id %>">Visit Category</a>
             <a href="/categories/<%= category.id%>/update">Edit Category</a>
-            <form class='deleteBtn' action="/categories/<%= category.id %>/delete" method="POST" hidden>
-                <button>Delete Category</button>
+            <form action="/categories/<%= category.id %>/delete" method="POST">
+                <button class='deleteBtn' hidden>Delete Category</button>
             </form>
         </div>
     <% }) %>

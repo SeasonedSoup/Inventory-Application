@@ -4,6 +4,7 @@ function toggleHandler() {
     let toggle = false;
     toggleButton.addEventListener('click', () => {
         const deleteButtons = document.querySelectorAll('.deleteBtn');
+        console.log(deleteButtons);
         deleteButtons.forEach((deleteBtn) => {
             deleteBtn.hidden = toggle;
         })

@@ -27,7 +27,7 @@ body {
 }
 
 .button {
-    margin-top: 20rem;
+    margin-top: 15rem;
     border: solid black 2px;
     border-radius: 16px;
     padding: 2rem;
@@ -36,17 +36,28 @@ body {
     color: black;
     font-size: 2rem;
 }
-
 /* ---------------------
-|  diplayItems style |
+|  Top-Content Headers |
 ----------------------*/
 
-.container {
+header {
     display: flex;
-    height: 96vh;
-    width: 96vw;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav {
+    margin-top: 12px;
+}
+/* ---------------------
+|  diplayCategories style |
+----------------------*/
+
+.categoryContainer {
+    display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 5rem;
     gap: 2rem;
 }
 
@@ -61,7 +72,61 @@ body {
     gap: 2rem;
 }
 
+/* ---------------------
+|  diplayResources style |
+----------------------*/
+.resourceContainer {
+    display: flex;
+    flex-direction: column;
+}
 
+.bottomArea {
+    margin-top: 10rem;
+}
+
+.resourceList {
+    display: flex;
+}
+
+
+/* -----------------------
+--Create and Update Forms/
+-------------------------*/
+
+.formBody {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formContainer {
+    border: solid 2px black;
+    padding: 48px;
+    width: 500px;
+    height:375px;
+}
+.submitForm {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.resourceForm {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.submit {
+    margin-bottom: 2rem;
+}
 /* ---------------------
 -- MORE
 ----------------------*/
+
+.error {
+    color: red;
+}
