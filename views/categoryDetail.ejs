@@ -14,19 +14,21 @@
     <div class="topArea">
         <h1><%= category.title %></h1>
         <h2><%= category.description %></h2>
-        <button id="toggleEditBtn">Edit Resources</button>
+        <button id="toggleEditBtn">Toggle Delete</button>
         <a href="/categories/<%= category.id %>/resources/create">Create Resource</a>
     </div>
     <div class="bottomArea">
         <li class="resourceList">
         <% resources.forEach(resource => { %>
             <ul>
-                <div class="card">
-                    <h2> <%= resource.title %> </h2>
+                <div class="cardSmall">
+                    <h3> <%= resource.title %> </h3>
                     <h4> <%= resource.description %> </h4>
                     <h3> <%=  resource.type %> </h3>
-                    <a href="/categories/<%= category.id %>/resources/<%= resource.id %>">Visit Resource</a>
-                    <a href="/categories/<%= category.id %>/resources/<%= resource.id %>/update">Update Resource</a>
+                    <div class="resourceActions">
+                        <a href="/categories/<%= category.id %>/resources/<%= resource.id %>">Visit Resource</a>
+                        <a href="/categories/<%= category.id %>/resources/<%= resource.id %>/update">Update Resource</a>
+                    </div>
                     <form class="deleteBtn" action="/categories/<%= category.id %>/resources/<%= resource.id %>/delete" method="POST" hidden>
                         <button> Delete Resource </button>
                     </form>
