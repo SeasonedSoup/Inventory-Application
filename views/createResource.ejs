@@ -9,6 +9,7 @@
 </head>
 <body>
     <div class="formBody">
+    <div class="formContainer">
      <form class="resourceForm" action="/categories/<%= categoryId %>/resources/create" method="POST">
         <label for="title">Title: </label>
         <input type="text" name="title" id="title" maxlength="100" value="<%= resource.title || '' %>" >
@@ -36,6 +37,7 @@
     </form>
 
     <%- include("partials/errors.ejs")  %>
+    </div>
     </div>
 </body>
 </html>

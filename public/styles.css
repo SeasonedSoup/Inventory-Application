@@ -133,7 +133,6 @@ header {
 }
 
 .formContainer {
-    border: solid 2px black;
     padding: 48px;
     width: 500px;
     height:375px;
@@ -157,6 +156,10 @@ header {
 -- MORE
 ----------------------*/
 
+#description {
+    height: 150px;
+    width: 100%;
+}
 .error {
     color: red;
 }
