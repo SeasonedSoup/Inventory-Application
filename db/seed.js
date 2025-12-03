@@ -43,11 +43,7 @@ const SQL = `
 async function main(){
   console.log('seeding values...')
   const client = new Client({
-    host: 'localhost',
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: 'resource_notes',
-    port: 5432
+    connectionString: process.env.DB_INTERNAL_URL
   })
 
   await client.connect();
