@@ -95,8 +95,10 @@ header {
 ----------------------*/
 .resourceContainer {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    margin-top: 5rem;
+    gap: 2rem;
 }
 
 .topArea {
