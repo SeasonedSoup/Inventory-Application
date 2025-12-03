@@ -43,7 +43,8 @@ const SQL = `
 async function main(){
   console.log('seeding values...')
   const client = new Client({
-    connectionString: process.env.DB_INTERNAL_URL
+    connectionString: process.env.DB_INTERNAL_URL,
+    ssl: { rejectUnauthorized: false }    
   })
 
   await client.connect();
